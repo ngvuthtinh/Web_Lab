@@ -1,0 +1,30 @@
+img{
+    width: 10vh;
+    height: auto;
+}
+
+body{
+    background-color: whitesmoke;
+    font-size: 20;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+blockquote{
+    border: 2px, solid, aqua;
+    background-color: aqua;
+    font-style: italic;
+}
+h3{
+    color:aqua;
+}
+
+h4{
+    font-weight: bold;
+}
+
+a:hover {
+  color: red;
+}
