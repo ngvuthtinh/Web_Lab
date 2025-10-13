@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="pictures/iu-logo.png" style="width: 100px; height: auto;">
+    <h1>Survey</h1>
+    <p>If you havea moment, we'd appreciateit if you would fill out this survey</p>
+    <h1>Your information:</h1>
+    <table>
+        <tr>
+            <td>
+                First Name<br>
+                Last Name<br>
+                Email<br>
+                Date of Birth<br>
+            </td>
+            <td>
+                <input type="text" name="first_name" placeholder="Nguyen Vu"> <br>
+                <input type="text" name="last_name" placeholder="Thanh Tinh"> <br>
+                <input type="email" name="email" placeholder="example@game.com"> <br>
+                <input type="date" name="birth"> <br>
+            </td>
+        </tr>
+    </table>
+
+    <h1>How did you hear about us</h1>
+    <input type="radio" value="search_engine" name="how" id="search_engine">
+    <label for="search_engine">Search engine</label>
+    <input type="radio" value="mouth" name="how" id="mouth">
+    <label for="mouth">Word of mouth</label>
+    <input type="radio" value="social_media" name="how" id="social_media">
+    <label for="social_media">Social Media</label>
+    <input type="radio" value="other" name="how" id="other">
+    <label for="other">Other</label>
+
+    <h1>Would you like to recieve announcments about new CDs and special offers?</h1>
+    <input type="checkbox" name="yes" id="would_like">
+    <label>YES, I'd like that</label> <br>
+    <input type="checkbox" name="yes" id="send_announcemants">
+    <label>YES, please send me email announcments</label> <br>
+
+    <label>Please contact me by: </label>
+    <select name="contact">
+        <option value="email&postal">Email or postal mail</option>
+        <option value="email">Email only</option>
+        <option value="postal">Postal mail only</option>
+    </select> <br>
+    <button type="submit">Submit</button>
+</body>
+
+</html>
