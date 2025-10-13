@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 10px 20px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.header{
+    border: 5px solid blue;
+}
+
+.content{
+    display: flex;
+    border: 5px solid greenyellow;
+    flex-grow: 1;
+}
+
+.sidebarA{
+    border: 5px solid pink;
+    width: 200px;
+}
+
+.sidebarB{
+    border: 5px solid black;
+    width: 200px;
+}
+
+.mainContent{
+    border: 5px solid red;
+    flex-grow: 1;
+}
+
+footer{
+    border: 5px solid black;
+}
