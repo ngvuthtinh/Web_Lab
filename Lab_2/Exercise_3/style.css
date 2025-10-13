@@ -1,0 +1,66 @@
+body {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+    border: 1px solid yellowgreen;
+    gap: 30px;
+    background-color: white;
+}
+
+header {
+    border: 1px solid yellowgreen;
+    display: flex;
+    gap: 20px;
+    background-color: white;
+}
+
+footer {
+    border: 1px solid yellowgreen;
+    text-align: end;
+    background-color: white;
+    padding: 10px;
+}
+
+img {
+    width: 150px;
+    height: auto;
+    margin: 10px;
+}
+
+h1,
+h2 {
+    margin-bottom: 0;
+}
+
+.note {
+    background-color: wheat;
+    padding: 10px;
+    margin: 20px 40px;
+}
+
+.note h1 {
+    margin-top: 0;
+}
+
+.note h2{
+    color: brown;
+    margin-bottom: 0;
+}
+
+.main-content {
+    padding-left: 20px;
+}
+
+header h1 {
+    color: aqua;
+}
+
+.main-content a{
+    font-weight: bold;
+}
