@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form Validator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input.valid {
+            border-color: #28a745;
+        }
+        input.invalid {
+            border-color: #dc3545;
+        }
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        .error-message.show {
+            display: block;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button[type="submit"]:hover {
+            background: #0056b3;
+        }
+        button[type="submit"]:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Sign Up Form</h2>
+        <form id="signupForm" novalidate>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username">
+                <div class="error-message" id="usernameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" id="email" placeholder="example@gmail.com">
+                <div class="error-message" id="emailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="**********">
+                <div class="error-message" id="passwordError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="**********">
+                <div class="error-message" id="confirmPasswordError"></div>
+            </div>
+
+            <button type="submit" id="submitBtn" disabled>Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        // TODO: Implement validation functions
+
+        function showError(fieldId, message) {
+            // TODO: Display error message
+            const fieldInput = document.getElementById(fieldId);
+            const errorField = document.getElementById(`${fieldId}Error`);
+
+            if (fieldInput) {
+                fieldInput.classList.remove("valid");
+                fieldInput.classList.add("invalid");
+            }
+            if (errorField) {
+                errorField.textContent = message;
+                errorField.classList.add("show");
+            }
+        }
+
+        function clearError(fieldId) {
+            // TODO: Clear error message
+            const fieldInput = document.getElementById(fieldId);
+            const errorField = document.getElementById(`${fieldId}Error`);
+
+            if (fieldInput) {
+                fieldInput.classList.remove("invalid");
+                fieldInput.classList.add("valid");
+            }
+            if (errorField) {
+                errorField.textContent = "";
+                errorField.classList.remove("show");
+            }
+        }
+
+        function validateUsername(username) {
+            // TODO: Check length (4-20) and alphanumeric
+            if (username === "") {
+                showError("username", "Please provide your username");
+                return false;
+            }
+            if (username.length < 4 || username.length > 20) {
+                showError("username", "Username must be between 4 and 20 characters");
+                return false;
+            }
+            if (!/^[a-zA-Z0-9]+$/.test(username)) {
+                showError("username", "Username can only contain letters and numbers");
+                return false;
+            }
+            clearError("username");
+            return true;
+        }
+
+        function validateEmail(email) {
+            // TODO: Use regex for email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email === "") {
+                showError("email", "Please provide your email");
+                return false;
+            }
+            if (!emailRegex.test(email)) {
+                showError("email", "Please enter a correct email format");
+                return false;
+            }
+            clearError("email");
+            return true;
+        }
+
+        function validatePassword(password) {
+            // TODO: Check length >= 8, has uppercase, has number
+            const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+            if (password === "") {
+                showError("password", "Please provide your password");
+                return false;
+            }
+            if (!passwordRegex.test(password)) {
+                showError("password", "Password must be at least 8 characters, 1 uppercase, 1 number");
+                return false;
+            }
+            clearError("password");
+            return true;
+        }
+
+        function validatePasswordMatch(pass1, pass2) {
+            // TODO: Compare passwords
+            if (pass2 === "") {
+                showError("confirmPassword", "Please confirm your password");
+                return false;
+            }
+            if (pass1 !== pass2) {
+                showError("confirmPassword", "Passwords do not match");
+                return false;
+            }
+            clearError("confirmPassword");
+            return true;
+        }
+
+        function validateForm() {
+            // TODO: Validate all fields and enable/disable submit
+            const username = document.getElementById("username").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+            const isUsernameValid = validateUsername(username);
+            const isEmailValid = validateEmail(email);
+            const isPasswordValid = validatePassword(password);
+            const isPasswordMatch = validatePasswordMatch(password, confirmPassword);
+
+            const submitBtn = document.getElementById("submitBtn");
+
+            if (isUsernameValid && isEmailValid && isPasswordValid && isPasswordMatch) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        }
+
+        // TODO: Add event listeners for real-time validation
+        document.addEventListener('DOMContentLoaded', () => {
+            const signupForm = document.getElementById("signupForm");
+
+            if (signupForm) {
+                signupForm.addEventListener("input", validateForm);
+
+                signupForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    // TODO: Handle form submission
+
+                    validateForm(); // Chạy validation lần cuối
+
+                    const submitBtn = document.getElementById("submitBtn");
+                    if (submitBtn.disabled) {
+                        alert("Please fix the errors in the form before submitting.");
+                    } else {
+                        alert("Sign up successful!");
+                        const formData = {
+                            username: document.getElementById("username").value.trim(),
+                            email: document.getElementById("email").value.trim()
+                        };
+                        console.log("Form data submitted:", formData);
+                    }
+                });
+            }
+            validateForm();
+        });
+    </script>
+</body>
+
+</html>
