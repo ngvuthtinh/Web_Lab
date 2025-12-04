@@ -34,6 +34,7 @@
 
 ## Project Structure
 
+```text
 src
 ├── main
 │   ├── java
