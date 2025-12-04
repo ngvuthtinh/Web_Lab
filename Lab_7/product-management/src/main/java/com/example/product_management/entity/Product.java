@@ -1,0 +1,150 @@
+package com.example.product_management.entity;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*; 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "products")
+public class Product {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    // Task 6.1: Validation annotations
+    @Column(name = "product_code", unique = true, nullable = false, length = 20)
+    @NotBlank(message = "Product code is required")
+    @Size(min = 3, max = 20, message = "Product code must be 3-20 characters")
+    @Pattern(regexp = "^P\\d{3,}$", message = "Product code must start with P followed by numbers (e.g., P001)")
+    private String productCode;
+    
+    @Column(nullable = false, length = 100)
+    @NotBlank(message = "Product name is required")
+    @Size(min = 3, max = 100, message = "Name must be 3-100 characters")
+    private String name;
+    
+    @Column(nullable = false, precision = 10, scale = 2)
+    @NotNull(message = "Price is required")
+    @DecimalMin(value = "0.01", message = "Price must be greater than 0")
+    @DecimalMax(value = "999999.99", message = "Price is too high")
+    private BigDecimal price;
+    
+    @Column(nullable = false)
+    @NotNull(message = "Quantity is required")
+    @Min(value = 0, message = "Quantity cannot be negative")
+    private Integer quantity;
+    
+    @Column(length = 50)
+    @NotBlank(message = "Category is required")
+    private String category;
+    
+    @Column(columnDefinition = "TEXT")
+    private String description;
+    
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    // BONUS 2: Image Path Field
+    @Column(nullable = true, length = 64)
+    private String imagePath;
+    
+    public Product() {
+    }
+    
+    public Product(String productCode, String name, BigDecimal price, Integer quantity, String category, String description) {
+        this.productCode = productCode;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.category = category;
+        this.description = description;
+    }
+    
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+    
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    public String getProductCode() {
+        return productCode;
+    }
+    
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public BigDecimal getPrice() {
+        return price;
+    }
+    
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+    
+    public Integer getQuantity() {
+        return quantity;
+    }
+    
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+    
+    public String getCategory() {
+        return category;
+    }
+    
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    // BONUS 2: Getter/Setter for Image
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+    
+    // BONUS 2: Helper method to resolve image URL for Thymeleaf
+    @Transient
+    public String getPhotosImagePath() {
+        if (imagePath == null || id == null) return null;
+        return "/uploads/" + imagePath;
+    }
+}
