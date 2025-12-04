@@ -65,7 +65,7 @@ src
 │       └── application.properties                  # DB & App Configuration
 ├── uploads                                         # Stores uploaded product images
 └── pom.xml                                         # Dependencies (Maven)
-
+```
 
 ## Database Schema
 
