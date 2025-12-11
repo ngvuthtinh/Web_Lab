@@ -39,7 +39,7 @@ public class RateLimitInterceptor implements HandlerInterceptor {
         // Limit: 100 requests per 1 minute
         // NOTE: For testing, you can change this to simple(2, Duration.ofMinutes(1))
         return Bucket.builder()
-            .addLimit(Bandwidth.simple(2, Duration.ofMinutes(1)))
+            .addLimit(Bandwidth.simple(100, Duration.ofMinutes(1)))
             .build();
     }
 }

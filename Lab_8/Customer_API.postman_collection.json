@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "b6a7c123-4567-8901-2345-678901234567",
-		"name": "Customer API",
-		"description": "Collection for Customer Management API",
+		"name": "Customer API Final",
+		"description": "Collection including CRUD, Search, Filter and Versioning (V2)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -12,37 +12,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/customers?page=0&size=5&sortBy=fullName&sortDir=asc",
+					"raw": "http://localhost:8080/api/customers?page=0&size=5&sortBy=customerCode&sortDir=asc",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"customers"
-					],
+					"path": ["api", "customers"],
 					"query": [
-						{
-							"key": "page",
-							"value": "0"
-						},
-						{
-							"key": "size",
-							"value": "5"
-						},
-						{
-							"key": "sortBy",
-							"value": "fullName"
-						},
-						{
-							"key": "sortDir",
-							"value": "asc"
-						}
+						{"key": "page", "value": "0"},
+						{"key": "size", "value": "5"},
+						{"key": "sortBy", "value": "customerCode"},
+						{"key": "sortDir", "value": "asc"}
 					]
 				}
-			},
-			"response": []
+			}
 		},
 		{
 			"name": "2. Get Customer By ID",
@@ -52,90 +34,58 @@
 				"url": {
 					"raw": "http://localhost:8080/api/customers/1",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"customers",
-						"1"
-					]
+					"path": ["api", "customers", "1"]
 				}
-			},
-			"response": []
+			}
 		},
 		{
-			"name": "3. Create Customer",
+			"name": "3. Create Customer (C006)",
 			"request": {
 				"method": "POST",
 				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
+					{"key": "Content-Type", "value": "application/json", "type": "text"}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"customerCode\": \"C999\",\n    \"fullName\": \"New User\",\n    \"email\": \"new.user@example.com\",\n    \"phone\": \"0987654321\",\n    \"address\": \"Da Nang\",\n    \"status\": \"ACTIVE\"\n}"
+					"raw": "{\n    \"customerCode\": \"C006\",\n    \"fullName\": \"David Miller\",\n    \"email\": \"david.miller@example.com\",\n    \"phone\": \"0987654321\",\n    \"address\": \"Miami, FL\",\n    \"status\": \"ACTIVE\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/customers",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"customers"
-					]
+					"path": ["api", "customers"]
 				}
-			},
-			"response": []
+			}
 		},
 		{
 			"name": "4. Update Customer (PUT)",
 			"request": {
 				"method": "PUT",
 				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
+					{"key": "Content-Type", "value": "application/json", "type": "text"}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"customerCode\": \"C001\",\n    \"fullName\": \"Updated Name\",\n    \"email\": \"updated@example.com\",\n    \"phone\": \"0900000000\",\n    \"address\": \"Updated Address\",\n    \"status\": \"INACTIVE\"\n}"
+					"raw": "{\n    \"customerCode\": \"C001\",\n    \"fullName\": \"John Doe Updated\",\n    \"email\": \"john.updated@example.com\",\n    \"phone\": \"0900000000\",\n    \"address\": \"Updated Address\",\n    \"status\": \"INACTIVE\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/customers/1",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"customers",
-						"1"
-					]
+					"path": ["api", "customers", "1"]
 				}
-			},
-			"response": []
+			}
 		},
 		{
 			"name": "5. Partial Update (PATCH)",
 			"request": {
 				"method": "PATCH",
 				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
+					{"key": "Content-Type", "value": "application/json", "type": "text"}
 				],
 				"body": {
 					"mode": "raw",
@@ -144,18 +94,11 @@
 				"url": {
 					"raw": "http://localhost:8080/api/customers/1",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"customers",
-						"1"
-					]
+					"path": ["api", "customers", "1"]
 				}
-			},
-			"response": []
+			}
 		},
 		{
 			"name": "6. Delete Customer",
@@ -165,45 +108,26 @@
 				"url": {
 					"raw": "http://localhost:8080/api/customers/1",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"customers",
-						"1"
-					]
+					"path": ["api", "customers", "1"]
 				}
-			},
-			"response": []
+			}
 		},
 		{
-			"name": "7. Search Customers",
+			"name": "7. Search Customers (Keyword: Doe)",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/customers/search?keyword=Nguyen",
+					"raw": "http://localhost:8080/api/customers/search?keyword=Doe",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"customers",
-						"search"
-					],
-					"query": [
-						{
-							"key": "keyword",
-							"value": "Nguyen"
-						}
-					]
+					"path": ["api", "customers", "search"],
+					"query": [{"key": "keyword", "value": "Doe"}]
 				}
-			},
-			"response": []
+			}
 		},
 		{
 			"name": "8. Filter By Status",
@@ -213,19 +137,11 @@
 				"url": {
 					"raw": "http://localhost:8080/api/customers/status/ACTIVE",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"customers",
-						"status",
-						"ACTIVE"
-					]
+					"path": ["api", "customers", "status", "ACTIVE"]
 				}
-			},
-			"response": []
+			}
 		},
 		{
 			"name": "9. Advanced Search",
@@ -235,33 +151,30 @@
 				"url": {
 					"raw": "http://localhost:8080/api/customers/advanced-search?email=example.com&status=ACTIVE",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"customers",
-						"advanced-search"
-					],
+					"path": ["api", "customers", "advanced-search"],
 					"query": [
-						{
-							"key": "name",
-							"value": null,
-							"disabled": true
-						},
-						{
-							"key": "email",
-							"value": "example.com"
-						},
-						{
-							"key": "status",
-							"value": "ACTIVE"
-						}
+						{"key": "name", "value": null, "disabled": true},
+						{"key": "email", "value": "example.com"},
+						{"key": "status", "value": "ACTIVE"}
 					]
 				}
-			},
-			"response": []
+			}
+		},
+		{
+			"name": "10. BONUS: API V2 (New Structure)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v2/customers",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "v2", "customers"]
+				}
+			}
 		}
 	]
 }
