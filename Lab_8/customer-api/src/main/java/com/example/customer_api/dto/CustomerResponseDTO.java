@@ -1,8 +1,10 @@
 package com.example.customer_api.dto;
 
+import org.springframework.hateoas.RepresentationModel; // New Import
 import java.time.LocalDateTime;
 
-public class CustomerResponseDTO {
+// BONUS 2: Extend RepresentationModel to support HATEOAS links
+public class CustomerResponseDTO extends RepresentationModel<CustomerResponseDTO> {
     
     private Long id;
     private String customerCode;
